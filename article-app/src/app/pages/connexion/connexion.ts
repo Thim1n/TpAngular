@@ -11,7 +11,6 @@ interface LoginResponse {
 
 @Component({
   selector: 'app-connexion',
-  standalone: true,
   imports: [HttpClientModule, FormsModule, RouterModule],
   templateUrl: './connexion.html',
   styleUrl: './connexion.scss'

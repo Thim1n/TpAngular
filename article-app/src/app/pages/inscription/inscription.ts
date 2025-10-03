@@ -11,7 +11,6 @@ interface SignupResponse {
 
 @Component({
   selector: 'app-inscription',
-  standalone: true,
   imports: [HttpClientModule, FormsModule, RouterModule],
   templateUrl: './inscription.html',
   styleUrl: './inscription.scss'
@@ -36,6 +35,11 @@ export class Inscription {
 
   onSubmit() {
     console.log('Tentative d\'inscription...', this.formData);
+
+    if (this.formData.password.length ==0 || this.formData.city.length ==0 || this.formData.email.length ==0 || this.formData.pseudo.length ==0 || this.formData.cityCode.length ==0 || this.formData.phone.length ==0) {
+      this.errorMessage = 'Tous les champs doivent être remplis.';
+      return;
+    }
     
     this.httpClient.post<SignupResponse>('http://127.0.0.1:3000/signup', this.formData)
       .subscribe({

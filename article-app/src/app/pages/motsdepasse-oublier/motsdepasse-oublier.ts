@@ -29,7 +29,12 @@ export class MotsdepasseOublier {
 
   onSubmit() {
     console.log('Demande de réinitialisation pour:', this.email);
-    
+
+    if (this.email.length === 0) {
+      this.errorMessage = 'L\'email ne peut pas être vide.';
+      return;
+    }
+
     this.httpClient.post<ResetPasswordResponse>('http://127.0.0.1:3000/reset-password', { email: this.email })
       .subscribe({
         next: (response) => {

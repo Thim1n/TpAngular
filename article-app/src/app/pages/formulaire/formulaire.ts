@@ -12,7 +12,6 @@ interface ApiResponse {
 
 @Component({
   selector: 'app-formulaire',
-  standalone: true,
   imports: [HttpClientModule, FormsModule, RouterModule],
   templateUrl: './formulaire.html',
   styleUrl: './formulaire.scss'
@@ -58,6 +57,11 @@ export class Formulaire implements OnInit {
   }
 
   onSubmit() {
+    if (this.article.title.length == 0 ) {
+      this.errorMessage = 'Tous les champs doivent être remplis.';
+      return;
+    }
+
     const url = 'http://127.0.0.1:3000/articles/save';
     const method = 'post';
     
