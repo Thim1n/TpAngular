@@ -1,0 +1,37 @@
+<header class="main-header">
+  <div class="header-content">
+    <h2>Liste des Articles</h2>
+    <div class="header-actions">
+      <button class="uk-button uk-button-primary create-button" (click)="navigateToCreateArticle()">
+        ✍️ Nouvel Article
+      </button>
+      <button class="uk-button uk-button-secondary" (click)="onClickAppelAPI()">
+        📰 Charger les articles
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="articles-container">
+  @for (article of articles; track article.id) {
+    <div class="article-card" (click)="navigateToDetails(article.id)">
+      <div class="uk-card uk-card-hover">
+        <div class="uk-card-media-top uk-flex uk-flex-center">
+          <img [src]="article.imgPath" 
+               [alt]="'Image de ' + article.title" 
+               class="article-img"
+               loading="lazy">
+        </div>
+        <div class="uk-card-body">
+          <h3 class="uk-card-title">{{ article.title }}</h3>
+          <p class="article-desc">{{ article.desc }}</p>
+          <div class="article-author">{{ article.author }}</div>
+        </div>
+      </div>
+    </div>
+  } @empty {
+    <div class="empty-state">
+      <p>Aucun article disponible. Cliquez sur "Charger les articles" pour commencer.</p>
+    </div>
+  }
+</div>

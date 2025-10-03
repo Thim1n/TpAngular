@@ -1,0 +1,62 @@
+<header class="main-header">
+  <div class="header-content">
+    <button class="back-button" onclick="window.history.back()">
+      <span class="back-icon">←</span>
+      <span>Retour</span>
+    </button>
+    <h2>Détail de l'article</h2>
+    <button class="edit-button uk-button uk-button-primary" (click)="navigateToEdit()">
+      ✏️ Modifier l'article
+    </button>
+  </div>
+</header>
+
+@if (article) {
+  <div class="article-detail-container">
+    <article class="article-detail-card">
+      <!-- En-tête avec image -->
+      <div class="article-header">
+        <div class="article-image-wrapper">
+          <img [src]="article.imgPath" 
+               [alt]="article.title" 
+               class="article-main-image"
+               loading="lazy">
+        </div>
+      </div>
+
+      <!-- Contenu -->
+      <div class="article-content">
+        <div class="article-meta">
+          <span class="author-badge">
+            <span class="author-icon">✍️</span>
+            {{ article.author }}
+          </span>
+          <span class="date-badge">
+            <span class="date-icon">📅</span>
+            Publié récemment
+          </span>
+        </div>
+
+        <h1 class="article-title">{{ article.title }}</h1>
+
+        <div class="article-body">
+          <p class="article-description">{{ article.desc }}</p>
+        </div>
+
+        <!-- Actions -->
+        <div class="article-actions">
+          <button class="action-button primary" routerLink="/liste-des-articles">
+            📰 Tous les articles
+          </button>
+          <button class="action-button secondary">
+            🔗 Partager
+          </button>
+        </div>
+      </div>
+    </article>
+  </div>
+} @else {
+  <div class="loading-container">
+    <div class="loading-spinner"></div>
+    <p class="loading-text">Chargement de l'article...</p>
+  </div>}

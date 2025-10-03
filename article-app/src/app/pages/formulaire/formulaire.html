@@ -1,0 +1,99 @@
+<div class="uk-section uk-section-muted uk-flex uk-flex-middle uk-animation-fade">
+    <div class="uk-width-1-1">
+        <div class="uk-container">
+            <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid>
+                <div class="uk-width-1-1@m">
+                    <div class="uk-margin uk-width-large uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
+                        <h3 class="uk-card-title uk-text-center">
+                            {{ isEditMode ? 'Modifier l\'article' : 'Nouvel article' }}
+                        </h3>
+                        <form (ngSubmit)="onSubmit()">
+                            @if(errorMessage) {
+                                <div class="uk-alert uk-alert-danger">
+                                    <p>{{ errorMessage }}</p>
+                                </div>
+                            }
+                            @if(successMessage) {
+                                <div class="uk-alert uk-alert-success">
+                                    <p>{{ successMessage }}</p>
+                                </div>
+                            }
+                            
+                            <div class="uk-margin">
+                                <label class="uk-form-label">Titre</label>
+                                <div class="uk-inline uk-width-1-1">
+                                    <span class="uk-form-icon" uk-icon="icon: pencil"></span>
+                                    <input 
+                                        class="uk-input uk-form-large" 
+                                        type="text" 
+                                        [(ngModel)]="article.title"
+                                        name="title"
+                                        required
+                                        placeholder="Titre de l'article">
+                                </div>
+                            </div>
+
+                            <div class="uk-margin">
+                                <label class="uk-form-label">Description</label>
+                                <textarea 
+                                    class="uk-textarea" 
+                                    rows="5"
+                                    [(ngModel)]="article.desc"
+                                    name="desc"
+                                    required
+                                    placeholder="Description de l'article"></textarea>
+                            </div>
+
+                            <div class="uk-margin">
+                                <label class="uk-form-label">Auteur</label>
+                                <div class="uk-inline uk-width-1-1">
+                                    <span class="uk-form-icon" uk-icon="icon: user"></span>
+                                    <input 
+                                        class="uk-input uk-form-large" 
+                                        type="text" 
+                                        [(ngModel)]="article.author"
+                                        name="author"
+                                        required
+                                        placeholder="Nom de l'auteur">
+                                </div>
+                            </div>
+
+                            <div class="uk-margin">
+                                <label class="uk-form-label">URL de l'image</label>
+                                <div class="uk-inline uk-width-1-1">
+                                    <span class="uk-form-icon" uk-icon="icon: image"></span>
+                                    <input 
+                                        class="uk-input uk-form-large" 
+                                        type="url" 
+                                        [(ngModel)]="article.imgPath"
+                                        name="imgPath"
+                                        required
+                                        placeholder="URL de l'image">
+                                </div>
+                            </div>
+
+                            @if(article.imgPath) {
+                                <div class="uk-margin">
+                                    <label class="uk-form-label">Aperçu de l'image</label>
+                                    <img [src]="article.imgPath" alt="Aperçu" class="uk-width-1-1">
+                                </div>
+                            }
+
+                            <div class="uk-margin">
+                                <button type="submit" class="uk-button uk-button-primary uk-button-large uk-width-1-1">
+                                    {{ isEditMode ? 'Modifier' : 'Créer' }} l'article
+                                </button>
+                            </div>
+
+                            <div class="uk-margin">
+                                <a routerLink="/liste-des-articles" class="uk-button uk-button-default uk-button-large uk-width-1-1">
+                                    Retour à la liste
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

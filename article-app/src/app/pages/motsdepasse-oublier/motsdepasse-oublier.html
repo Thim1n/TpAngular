@@ -1,0 +1,56 @@
+<div class="uk-section uk-section-muted uk-flex uk-flex-middle uk-animation-fade" style="min-height: 100vh;">
+    <div class="uk-width-1-1">
+        <div class="uk-container">
+            <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid>
+                <div class="uk-width-1-1@m">
+                    <div class="uk-margin uk-width-large uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
+                        <h3 class="uk-card-title uk-text-center">Mot de passe oublié</h3>
+                        <form (ngSubmit)="onSubmit()">
+                            @if(errorMessage) {
+                                <div class="uk-alert uk-alert-danger">
+                                    <p>{{ errorMessage }}</p>
+                                </div>
+                            }
+                            @if(successMessage && newPassword) {
+                                <div class="uk-alert uk-alert-success">
+                                    <p>{{ successMessage }}</p>
+                                    <p>Votre nouveau mot de passe est : <strong>{{ newPassword }}</strong></p>
+                                    <p>Notez-le bien, vous en aurez besoin pour vous connecter.</p>
+                                </div>
+                            }
+                            <div class="uk-margin">
+                                <div class="uk-inline uk-width-1-1">
+                                    <span class="uk-form-icon" uk-icon="icon: mail"></span>
+                                    <input 
+                                        class="uk-input uk-form-large" 
+                                        type="email" 
+                                        placeholder="Entrez votre email"
+                                        [(ngModel)]="email"
+                                        name="email"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="uk-margin">
+                                <button class="uk-button uk-button-primary uk-button-large uk-width-1-1">
+                                    Réinitialiser le mot de passe
+                                </button>
+                            </div>
+                            @if(newPassword) {
+                                <div class="uk-margin">
+                                    <a routerLink="/login" class="uk-button uk-button-secondary uk-button-large uk-width-1-1">
+                                        Retourner à la connexion
+                                    </a>
+                                </div>
+                            }
+                            @if(!newPassword) {
+                                <div class="uk-text-small uk-text-center">
+                                    <a routerLink="/login">Retour à la connexion</a>
+                                </div>
+                            }
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
